@@ -42,9 +42,6 @@ bot.on('message', message=>{
             message.channel.bulkDelete(args[1]);
             break;
 
-        default:
-            message.channel.send('Đếu hiểu bro');
-            break;
      }
 })
 bot.login(process.env.token);
