@@ -37,6 +37,14 @@ bot.on('message', message=>{
                 message.channel.send('cl_teammate_colors_show 1;\ncl_hud_radar_scale 1.15;\ncl_radar_scale 0.4;\ncl_radar_always_centered 0;\ncl_radar_icon_scale_min 1;')
             }
             break;
+        case 'clear':
+            if(!args[1]) return message.reply('Thêm số nữa bro');
+            message.channel.bulkDelete(args[1]);
+            break;
+
+        default:
+            message.channel.send('Đếu hiểu bro');
+            break;
      }
 })
 bot.login(process.env.token);
