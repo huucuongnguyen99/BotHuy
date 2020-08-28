@@ -46,6 +46,10 @@ Client.on('message', message=>{
         Client.commands.get('van').execute(message, args);
     }
 
+    if(command === 'trúc'){
+        Client.commands.get('truc').execute(message, args);
+    }
+
 
     if(command === 'config'){
         Client.commands.get('config').execute(message, args);
