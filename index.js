@@ -25,6 +25,10 @@ Client.on('message', message=>{
         Client.commands.get('g2').execute(message, args);
     }
 
+    if(command === 'astralis'){
+        Client.commands.get('astralis').execute(message, args);
+    }
+
     if(command === 'huy'){
         Client.commands.get('huy').execute(message, args);
     }
