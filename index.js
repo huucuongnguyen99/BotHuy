@@ -1,49 +1,60 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const Client = new Discord.Client();
 
+const prefix = '!';
+const fs = require('fs');
 
-const PREFIX = '!';
+Client.commands= new Discord.Collection();
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+for(const file of commandFiles){
+    const command = require(`./commands/${file}`);
 
-bot.on('ready', () =>{
+    Client.commands.set(command.name, command);
+}
+
+Client.once('ready', () =>{
     console.log('This bot is online!');
 });
-bot.on('message', message=>{
-    let args = message.content.substring(PREFIX.length).split(" ");
+Client.on('message', message=>{
+    // let args = message.content.substring(prefix.length).split(" ");
+    if(!message.content.startsWith(prefix) || message.author.bot) return;
 
-     switch(args[0]){
-        case 'hải':
-            message.channel.send('đô');
-            break;
-         case 'huy':
-            message.channel.send('siêu đẹp trai');
-            break;
-         case 'cường':
-             message.channel.send('bê đê');
-            break;
-        case 'quân':
-            message.channel.send('đẹp trai');
-            break;
-        case 'Nhân':
-            message.channel.send('nhớ Nhân quá <3');
-            break;  
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase();
+    
+    if(command === 'ping'){
+        Client.commands.get('ping').execute(message, args);
+    }
 
-        case 'config':
-            if(args[1] === 'file'){
-                message.channel.send({
-                    files:['HuyTran_Maxim.cfg']
-                });
-            }
-            if(args[1] === 'radar'){
-                message.channel.send('cl_teammate_colors_show 1;\ncl_hud_radar_scale 1.15;\ncl_radar_scale 0.4;\ncl_radar_always_centered 0;\ncl_radar_icon_scale_min 1;')
-            }
-            break;
-        case 'clear':
-            if(!args[1]) return message.reply('Thêm số nữa bro');
-            message.channel.bulkDelete(args[1]);
-            break;
+    if(command === 'huy'){
+        Client.commands.get('huy').execute(message, args);
+    }
 
-     }
-})
-bot.login(process.env.token);
+    if(command === 'quân'){
+        Client.commands.get('quan').execute(message, args);
+    }
+
+    if(command === 'hải'){
+        Client.commands.get('hai').execute(message, args);
+    }
+
+    if(command === 'cường'){
+        Client.commands.get('cuong').execute(message, args);
+    }
+
+    if(command === 'config'){
+        Client.commands.get('config').execute(message, args);
+    }
+
+    if(command === 'clear'){
+        Client.commands.get('clear').execute(message, args);
+    }
+
+    if(command === 'poll'){
+        Client.commands.get('poll').execute(message, args);
+    }
+
+});
+Client.login(process.env.token);
 
 
