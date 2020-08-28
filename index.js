@@ -16,7 +16,6 @@ Client.once('ready', () =>{
     console.log('This bot is online!');
 });
 Client.on('message', message=>{
-    // let args = message.content.substring(prefix.length).split(" ");
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
@@ -50,17 +49,12 @@ Client.on('message', message=>{
         Client.commands.get('truc').execute(message, args);
     }
 
-
     if(command === 'config'){
         Client.commands.get('config').execute(message, args);
     }
 
     if(command === 'clear'){
         Client.commands.get('clear').execute(message, args);
-    }
-
-    if(command === 'poll'){
-        Client.commands.get('poll').execute(message, args);
     }
 
 });
