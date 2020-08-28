@@ -22,8 +22,8 @@ Client.on('message', message=>{
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     
-    if(command === 'ping'){
-        Client.commands.get('ping').execute(message, args);
+    if(command === 'g2'){
+        Client.commands.get('g2').execute(message, args);
     }
 
     if(command === 'huy'){
