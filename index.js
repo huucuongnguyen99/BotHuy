@@ -42,6 +42,11 @@ Client.on('message', message=>{
         Client.commands.get('cuong').execute(message, args);
     }
 
+    if(command === 'vân'){
+        Client.commands.get('van').execute(message, args);
+    }
+
+
     if(command === 'config'){
         Client.commands.get('config').execute(message, args);
     }
