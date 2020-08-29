@@ -13,18 +13,17 @@ module.exports = {
         .setDescription('Cách dùng: !poll + câu hỏi');
 
         if(!args[0]){
-            
             message.channel.send(embed);
+        }else{
+
+            let msgArgs = args.slice(0).join(" ");
+
+            message.delete({timeout: 2000});
+
+            message.channel.send("**" + msgArgs + "**").then(message => {
+                message.react('👍');
+                message.react('👎');
+            }).catch(console.error);
         }
-
-        let msgArgs = args.slice(0).join(" ");
-
-        message.delete({timeout: 2000});
-
-        message.channel.send("**" + msgArgs + "**").then(message => {
-            message.react('👍');
-            message.react('👎');
-            
-        }).catch(console.error);
     }
 }

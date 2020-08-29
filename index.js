@@ -61,6 +61,10 @@ Client.on('message', message=>{
         Client.commands.get('clear').execute(message, args);
     }
 
+    if(command === 'poll'){
+        Client.commands.get('poll').execute(message, args);
+    }
+
 });
 Client.login(process.env.token);
 
